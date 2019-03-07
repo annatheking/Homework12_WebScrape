@@ -44,7 +44,7 @@ def scrape():
     url = 'https://space-facts.com/mars/'
     table = pd.read_html(url)
     df = pd.DataFrame(table[0])
-    df.columns['Description', 'Value']
+    df.columns = (['Description', 'Value'])
     html_table = df.to_html()
 
     ## Mars Hemispheres
