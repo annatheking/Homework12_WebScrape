@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <!-- Craigslist Listings -->
+    <div class="row" id="craiglist-listings">
+      <div class="col-md-12">
+        <h1>Latest Mars News</h1>
+        <h4 class="heading">{{ dict.news_title }}</h4>
+        <p>{{ dict.news_p }}</p>
+      </div>
+
+    <div class='row'>
+      <div class="col-md-8">
+        <img src= {{ dict.featured_image_url }} width=100%>
+      </div>
+
+      <div class="col-md-4">
+          <div style="border: 1px solid teal; padding: 2%">
+            <h4 style="text-align:left">Current Weather on Mars</h4>
+            <p>{{ dict.mars_weather }}</p>
+          </div>
+
+          <br>
+
+          <div>
+            <h3>Mars Facts</h3>
+            {{ dict.html_table | safe }}
+          </div>
+      </div>
+    <div>
+
+    <div class="col-md-12 text-center">
+      <h1>Mars Hemispheres</h1>
+    </div>
+
+    <hr style="width: 80%">
+
+    <div class="row">
+        {% for h in dict.hemisphere_image_urls | batch(2, '&nbsp;') %}
+          {% for i in h %}
+            <div class="col-md-6 col-centerd">
+              <h4 style="text-align:center">{{ i.title }}</h4>
+              <img src={{ i.img_url }} width=80% alt="centered image">
+              <br>
+            </div>
+          {% endfor %}
+        {% endfor %}
+    </div>
+
+  </div>
+</body>
+
+</html>
+
